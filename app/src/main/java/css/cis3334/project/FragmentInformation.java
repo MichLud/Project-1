@@ -5,20 +5,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import css.cis3334.project.databinding.FragmentDashboardBinding;
+import css.cis3334.project.databinding.FragmentInformationBinding;
 
-public class FragmentDashboard extends Fragment {
+public class FragmentInformation extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentInformationBinding binding;
     private MainViewModel viewModel;
-    Button buttonUpdateOrder;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -26,7 +25,7 @@ public class FragmentDashboard extends Fragment {
         // Use the shared ViewModel
         viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentInformationBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textDashboard;

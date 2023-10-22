@@ -10,11 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import css.cis3334.project.databinding.FragmentNotificationsBinding;
+import css.cis3334.project.databinding.FragmentSpellsBinding;
 
-public class FragmentNotifications extends Fragment {
+public class FragmentSpells extends Fragment {
 
-    private FragmentNotificationsBinding binding;
+    private FragmentSpellsBinding binding;
     private MainViewModel viewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -25,7 +25,7 @@ public class FragmentNotifications extends Fragment {
         // Set the text in the shared ViewModel. This should appear in the other fragments.
         viewModel.setText("Notification Set !!!");
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        binding = FragmentSpellsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textNotifications;
