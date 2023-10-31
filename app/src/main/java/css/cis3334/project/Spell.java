@@ -1,9 +1,11 @@
 package css.cis3334.project;
 
+import java.io.Serializable;
+
 /**
  * Represents a certain level of spells and the max allowed for the character
  */
-public class Spell {
+public class Spell implements Serializable {
     public int spellLevel, spellMax;
 
     /**
@@ -15,5 +17,10 @@ public class Spell {
     public Spell(int level, int spellMax) {
         this.spellLevel = level;
         this.spellMax = spellMax;
+    }
+
+    @Override
+    public String toString() {
+        return "" + spellMax;
     }
 }

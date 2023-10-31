@@ -20,6 +20,13 @@ public class CharacterRepository {
         });
     }
 
+    public void delete(Character character) {
+        CharacterDatabase.databaseWriteExecutor.execute(() -> {
+            characterDao.delete(character);
+        });
+    }
+
+
     public LiveData<List<Character>> getAllCharacters() {
         return allCharacters;
     }

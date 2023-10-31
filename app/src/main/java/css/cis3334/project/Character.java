@@ -39,13 +39,15 @@ public class Character implements Serializable {
     public Character(String name, String characterClass) {
         this.name = name;
         this.characterClass = characterClass;
-        attributes = null;
-
+        attributes = new ArrayList<>();
         for(int i=0; i<6; i++) {
             attributes.add(10);
         }
 
         spells = new ArrayList<>();
+        for(int i=0; i<3; i++) {
+            spells.add(new Spell(i+1, 0));
+        }
     }
 
     @Override

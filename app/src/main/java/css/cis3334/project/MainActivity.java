@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        recyclerViewCharacterList = findViewById(R.id.recyclerViewCharacterList);
+
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         characterAdapter = new CharacterAdapter(mainViewModel);
@@ -43,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewCharacterList.setLayoutManager(new LinearLayoutManager(this));
 
 
-        setupSpinnerCurrentlySelected();
         setupButtonNew();
         setupButtonAttributes();
         setupButtonSpells();
@@ -51,10 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void setupSpinnerCurrentlySelected() {
+    private void setupSpinnerCurrentlySelected(List<Character> newList) {
         spinnerCurrentlySelected = findViewById(R.id.spinnerCurrentlySelected);
-        List<Character> characterList = (List<Character>) mainViewModel.getAllCharacters();
-        ArrayAdapter<Character> adapter = new ArrayAdapter<Character>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, characterList);
+        ArrayAdapter<Character> adapter = new ArrayAdapter<Character>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, newList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinnerCurrentlySelected.setAdapter(adapter);
@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("CIS 3334", "MainActivity -- LiveData Observer -- Number of heartrates = " + characters.size());
 
                 characterAdapter.updateCharacter(characters);
+                setupSpinnerCurrentlySelected(characters);
                 characterAdapter.notifyDataSetChanged();
             }
         });

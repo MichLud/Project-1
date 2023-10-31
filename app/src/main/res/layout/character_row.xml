@@ -7,11 +7,12 @@
 
     <TextView
         android:id="@+id/textViewCharacterDescription"
-        android:layout_width="122dp"
+        android:layout_width="0dp"
         android:layout_height="25dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="4dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

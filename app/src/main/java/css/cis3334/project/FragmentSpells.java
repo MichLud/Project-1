@@ -10,6 +10,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -39,9 +40,9 @@ public class FragmentSpells extends AppCompatActivity {
 
     private void loadData() {
         List<Spell> spellList = selectedCharacter.spells;
-        editTextLevelOne.setText(spellList.get(0).spellMax);
-        editTextLevelTwo.setText(spellList.get(1).spellMax);
-        editTextLevelThree.setText(spellList.get(2).spellMax);
+        editTextLevelOne.setText(spellList.get(0).toString());
+        editTextLevelTwo.setText(spellList.get(1).toString());
+        editTextLevelThree.setText(spellList.get(2).toString());
     }
 
 
@@ -52,10 +53,15 @@ public class FragmentSpells extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("CIS 3334", "Save Button Clicked");
-                List<Spell> spellList = selectedCharacter.spells;
+                Character update = new Character(selectedCharacter.name, selectedCharacter.characterClass);
+                update.spells = selectedCharacter.spells;
+                ArrayList<Spell> spellList = update.spells;
                 spellList.get(0).spellMax = Integer.parseInt(editTextLevelOne.getText().toString());
                 spellList.get(1).spellMax = Integer.parseInt(editTextLevelTwo.getText().toString());
                 spellList.get(2).spellMax = Integer.parseInt(editTextLevelThree.getText().toString());
+                update.spells = spellList;
+                viewModel.deleteCharacter(selectedCharacter);
+                viewModel.addCharacter(update);
             }
         });
     }
