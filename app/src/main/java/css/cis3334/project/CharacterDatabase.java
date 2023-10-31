@@ -5,10 +5,12 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Character.class, Spell.class}, version = 1)
+@Database(entities = {Character.class}, version = 1)
 public abstract class CharacterDatabase extends RoomDatabase {
     public abstract CharacterDao characterDao();
 

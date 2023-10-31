@@ -141,7 +141,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextCharacterClass" />
 
     <EditText
-        android:id="@+id/editTextNumberCharacterDexterity"
+        android:id="@+id/editTextCharacterDexterity"
         android:layout_width="115dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
@@ -160,7 +160,7 @@
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberCharacterDexterity" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextCharacterDexterity" />
 
     <EditText
         android:id="@+id/editTextCharacterIntelligence"
@@ -199,11 +199,10 @@
         android:id="@+id/buttonSaveInfoChanges"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="41dp"
+        android:layout_marginStart="31dp"
         android:text="Save Changes"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCharacterCharisma" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonReturnFromInfo"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <View
         android:id="@+id/divider"
@@ -217,5 +216,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <Button
+        android:id="@+id/buttonReturnFromInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="83dp"
+        android:layout_marginTop="37dp"
+        android:text="Return"
+        app:layout_constraintStart_toStartOf="@+id/editTextCharacterCharisma"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCharacterCharisma" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

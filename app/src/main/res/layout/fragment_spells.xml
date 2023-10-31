@@ -114,10 +114,22 @@
         android:id="@+id/buttonSaveSpellChanges"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="33dp"
         android:text="Save Changes"
-        app:layout_constraintStart_toStartOf="@+id/editTextLevelThree"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLevelThree" />
+
+    <Button
+        android:id="@+id/buttonReturnFromSpells"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="67dp"
+        android:text="Return"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonSaveSpellChanges"
         app:layout_constraintTop_toBottomOf="@+id/editTextLevelThree" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

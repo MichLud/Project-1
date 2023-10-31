@@ -1,57 +1,87 @@
 package css.cis3334.project;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import css.cis3334.project.databinding.FragmentInformationBinding;
+public class FragmentInformation extends AppCompatActivity {
 
-public class FragmentInformation extends Fragment {
-
-    private FragmentInformationBinding binding;
     private MainViewModel viewModel;
+    public Character selectedCharacter;
+    private EditText editTextCharacterName, editTextCharacterClass;
+    private EditText editTextCharacterStrength, editTextCharacterDexterity;
+    private EditText editTextCharacterConstitution, editTextCharacterIntelligence;
+    private EditText editTextCharacterWisdom, editTextCharacterCharisma;
+    private Button buttonSaveInfoChanges, buttonReturn;
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_information);
+
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        selectedCharacter = (Character) getIntent().getSerializableExtra("selectedCharacter");
+
+        editTextCharacterName = findViewById(R.id.editTextCharacterName);
+        editTextCharacterClass = findViewById(R.id.editTextCharacterClass);
+        editTextCharacterStrength = findViewById(R.id.editTextCharacterStrength);
+        editTextCharacterDexterity = findViewById(R.id.editTextCharacterDexterity);
+        editTextCharacterConstitution = findViewById(R.id.editTextCharacterConstitution);
+        editTextCharacterIntelligence = findViewById(R.id.editTextCharacterIntelligence);
+        editTextCharacterWisdom = findViewById(R.id.editTextCharacterWisdom);
+        editTextCharacterCharisma = findViewById(R.id.editTextCharacterCharisma);
 
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        //DashboardViewModel dashboardViewModel =  new ViewModelProvider(this).get(DashboardViewModel.class);
-        // Use the shared ViewModel
-        viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-
-        binding = FragmentInformationBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        final TextView textView = binding.textDashboard;
-        viewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-
-        setupButton();
-
-        return root;
+        loadData();
+        setupSaveButton();
+        setupReturnButton();
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
+    private void setupReturnButton() {
+        buttonReturn = findViewById(R.id.buttonReturnFromInfo);
 
-    private void setupButton() {
-        //buttonUpdateOrder = findViewById(R.id.buttonUpdateOrder);
-        // This app uses the new bindings instead of the old findViewById
-        buttonUpdateOrder= binding.buttonUpdateOrder;
-        buttonUpdateOrder.setOnClickListener(new View.OnClickListener() {
+        buttonReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("CIS 3334", "Place order button clicked");   // log button click for debugging using "CIS 3334" tag
-                viewModel.setText("Order Placed");
+                Log.d("CIS 3334" , "Return button Pressed");
+                finish();
             }
         });
     }
+
+    private void loadData() {
+        editTextCharacterName.setText(selectedCharacter.name);
+        editTextCharacterClass.setText(selectedCharacter.characterClass);
+        editTextCharacterStrength.setText(selectedCharacter.attributes.get(0));
+        editTextCharacterDexterity.setText(selectedCharacter.attributes.get(1));
+        editTextCharacterConstitution.setText(selectedCharacter.attributes.get(2));
+        editTextCharacterIntelligence.setText(selectedCharacter.attributes.get(3));
+        editTextCharacterWisdom.setText(selectedCharacter.attributes.get(4));
+        editTextCharacterCharisma.setText(selectedCharacter.attributes.get(5));
+
+    }
+
+    private void setupSaveButton() {
+        buttonSaveInfoChanges = findViewById(R.id.buttonSaveInfoChanges);
+
+        buttonSaveInfoChanges.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("CIS 3334", "Save Button Pressed");
+                selectedCharacter.attributes.set(0,Integer.parseInt((editTextCharacterStrength.getText().toString())));
+                selectedCharacter.attributes.set(1,Integer.parseInt((editTextCharacterDexterity.getText().toString())));
+                selectedCharacter.attributes.set(2,Integer.parseInt((editTextCharacterConstitution.getText().toString())));
+                selectedCharacter.attributes.set(3,Integer.parseInt((editTextCharacterIntelligence.getText().toString())));
+                selectedCharacter.attributes.set(4,Integer.parseInt((editTextCharacterWisdom.getText().toString())));
+                selectedCharacter.attributes.set(5,Integer.parseInt((editTextCharacterCharisma.getText().toString())));
+            }
+        });
+    }
+
 }

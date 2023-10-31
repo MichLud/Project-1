@@ -1,38 +1,29 @@
 package css.cis3334.project;
 
+import android.app.Application;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import java.util.List;
+
 public class MainViewModel extends ViewModel {
 
-    private final MutableLiveData<String> mScreenText;
-    private MutableLiveData<Integer> orderQuantity;
-    private MutableLiveData<String> cupcakeFlavor;
-    private MutableLiveData<String> pickupDate;
-    private MutableLiveData<Double> cupcakePrice;
+    public LiveData<List<Character>> characterList;
+    public CharacterRepository characterRepository;
 
-    public MainViewModel() {
-        mScreenText = new MutableLiveData<>();
-        mScreenText.setValue("This is home fragment");
+    public MainViewModel(Application application) {
+        characterRepository = new CharacterRepository(application);
+        characterList = characterRepository.getAllCharacters();
     }
 
-    public LiveData<String> getText() {
-        return mScreenText;
-    }
-    public void setText(String newText) {
-        mScreenText.setValue(newText);
+    public void addCharacter(Character newCharacter) {
+        characterRepository.insert(newCharacter);
     }
 
-    public void setQuanity(Integer numberOfCupcakes) {
-        orderQuantity.setValue(numberOfCupcakes);
-    }
 
-    public void setFlavor(String newFlavor) {
-        cupcakeFlavor.setValue(newFlavor);
-    }
-
-    public void setPickupDate(String newPickupDate) {
-        pickupDate.setValue(newPickupDate);
+    public LiveData<List<Character>> getAllCharacters() {
+        return characterList;
     }
 }

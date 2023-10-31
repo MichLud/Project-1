@@ -12,12 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class CharacterAdapter extends RecyclerView.Adapter<CharacterViewHolder> {
-    public Application application;
     public MainViewModel mainViewModel;
     private List<Character> characterList;
 
-    public CharacterAdapter(Application application, MainViewModel mainViewModel) {
-        this.application = application;
+    public CharacterAdapter(MainViewModel mainViewModel) {
         this.mainViewModel = mainViewModel;
     }
 
